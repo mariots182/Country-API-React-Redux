@@ -13,8 +13,6 @@ const CountryListStyled = styled.div`
 `;
 
 function CountryList() {
-  const [inputValue, setInputValue] = useState("");
-
   const dispatch = useDispatch();
 
   const countryListByName = useSelector(state => state.countryListByName);
@@ -50,33 +48,8 @@ function CountryList() {
       });
   }, [dispatch]);
 
-  const filterByName = e => {
-    setInputValue(e.target.value);
-    dispatch({
-      type: "SET_COUNTRY_BY_NAME",
-      payload: e.target.value
-    });
-  };
-
-  const clearInput = () => {
-    dispatch({
-      type: "SET_COUNTRY_BY_NAME",
-      payload: ""
-    });
-    setInputValue("");
-  };
-
   return (
     <CountryListStyled>
-      <input type="text" value={inputValue} onChange={filterByName} />
-      {inputValue && <button onClick={clearInput}>X</button>}
-
-      {countryListByName.length === 0 && inputValue && (
-        <p>
-          <strong>{inputValue}</strong>Not Found in countries
-        </p>
-      )}
-
       {countryList.map(({ name, flag, population, region, capital }) => {
         return (
           <Country
