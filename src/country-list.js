@@ -18,7 +18,7 @@ function CountryList() {
   const countryListByName = useSelector(state => state.countryListByName);
 
   const countryList = useSelector(state => {
-    if ("" !== state.filterByRegion) {
+    if (state.filterByRegion !== "" && countryListByName.length === 0) {
       return state.countryFilteredByRegion;
     }
 
