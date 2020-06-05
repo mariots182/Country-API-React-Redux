@@ -8,20 +8,22 @@ const RegionFilterStyled = styled.select`
   box-shadow: 0 2px 9px 0 rgba(0, 0, 0, 0.05);
   outline: 0;
   border-radius: 5px;
+  background: var(--white);
+  color: var(--black);
 `;
 
-const filterByRegionAction = regionSelected => {
+const filterByRegionAction = (regionSelected) => {
   return {
     type: "FILTER_BY_REGION",
-    payload: { regionSelected }
+    payload: { regionSelected },
   };
 };
 
 export const Region = () => {
   const dispatch = useDispatch();
-  const filterByRegion = useSelector(state => state.filterByRegion);
+  const filterByRegion = useSelector((state) => state.filterByRegion);
 
-  const onRegionChange = selectEvent => {
+  const onRegionChange = (selectEvent) => {
     const value = selectEvent.target.value;
 
     dispatch(filterByRegionAction(value));

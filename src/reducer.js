@@ -4,25 +4,26 @@ export default function reducer(state, action) {
     case "SET_COUNTRY_LIST": {
       return {
         ...state,
-        countryList: action.payload
+        countryList: action.payload,
       };
     }
 
     case "SET_COUNTRY_BY_NAME": {
       let list;
+
       if (state.filterByRegion !== "") {
         list = state.countryFilteredByRegion;
       } else {
         list = state.countryList;
       }
 
-      const countryListByName = list.filter(country =>
+      const countryListByName = list.filter((country) =>
         country.name.toLocaleLowerCase().includes(action.payload.toLowerCase())
       );
 
       return {
         ...state,
-        countryListByName
+        countryListByName,
       };
     }
 
@@ -34,13 +35,13 @@ export default function reducer(state, action) {
       }
 
       const countryFilteredByRegion = state.countryList.filter(
-        country => country.region === regionSelected
+        (country) => country.region === regionSelected
       );
 
       return {
         ...state,
         countryFilteredByRegion,
-        filterByRegion: regionSelected
+        filterByRegion: regionSelected,
       };
     }
 
